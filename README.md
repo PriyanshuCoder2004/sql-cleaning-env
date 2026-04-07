@@ -140,7 +140,7 @@ Range: **-1.0 to +1.0**
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/your-username/sql-cleaning-env
+git clone https://github.com/PriyanshuCoder2004/sql-cleaning-env
 cd sql-cleaning-env
 
 # 2. Install dependencies
