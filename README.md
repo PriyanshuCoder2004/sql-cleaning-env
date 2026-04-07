@@ -186,26 +186,19 @@ The environment is deployed at:
 ```
 
 sql-cleaning-env/
-├── files/
-│   ├── __pycache__/
-│   ├── app.py              ← FastAPI server (all endpoints)
-│   ├── Dockerfile          ← Port 7860, python:3.11-slim
-│   ├── environment.py      ← Core RL env: step() / reset() / state()
-│   ├── graders.py          ← 4 deterministic graders (0.0–1.0 scores)
-│   ├── inference.py        ← Standalone baseline script
-│   ├── models.py           ← Pydantic models: SQLAction, SQLObservation, GraderResult
-│   ├── openenv.yaml        ← OpenEnv spec metadata
-│   ├── README.md
-│   ├── requirements.txt    
-│   ├── rewards.py          ← Shaped reward function
-│   └── tasks.py            ← 4 task definitions with setup SQL
-│
-├── venv/
-│   ├── Include/
-│   ├── Lib/
-│   └── Scripts/
-│
 ├── .gitignore
-└── pyvenv.cfg
+├── Dockerfile          ← Port 7860, python:3.11-slim
+├── README.md
+├── app.py              ← FastAPI server (all endpoints)
+├── environment.py      ← Core RL env: step() / reset() / state()
+├── graders.py          ← 4 deterministic graders (0.0–1.0 scores)
+├── inference.py        ← Standalone baseline script
+├── models.py           ← Pydantic models: SQLAction, SQLObservation, GraderResult
+├── openenv.yaml        ← OpenEnv spec metadata
+├── requirements.txt    
+├── rewards.py          ← Shaped reward function
+└── tasks.py            ← 4 task definitions with setup SQL
+
+
 
 ```
