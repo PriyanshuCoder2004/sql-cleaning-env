@@ -177,7 +177,7 @@ curl http://localhost:7860/health
 ### Hugging Face Spaces
 
 The environment is deployed at:
-`https://your-username-sql-cleaning-env.hf.space`
+`https://huggingface.co/spaces/PriyanshuCoder/sql-cleaning-env`
 
 ---
 
