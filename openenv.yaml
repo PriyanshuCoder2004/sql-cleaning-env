@@ -1,7 +1,7 @@
 name: sql-cleaning-env
 version: "0.1.0"
 description: "OpenEnv environment where AI agents clean dirty SQL databases using reinforcement learning."
-author: your-hf-username
+author: PriyanshuCoder
 license: MIT
 tags:
   - openenv
