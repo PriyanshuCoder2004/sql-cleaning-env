@@ -1,0 +1,38 @@
+{
+  "results": [
+    {
+      "task": "null_filling",
+      "steps_taken": 1,
+      "total_reward": 0.6021,
+      "grader_score": 1.0,
+      "verdict": "PASS",
+      "success": true
+    },
+    {
+      "task": "deduplication",
+      "steps_taken": 1,
+      "total_reward": 0.825,
+      "grader_score": 1.0,
+      "verdict": "PASS",
+      "success": true
+    },
+    {
+      "task": "schema_normalization",
+      "steps_taken": 10,
+      "total_reward": -1.5,
+      "grader_score": 0.214,
+      "verdict": "FAIL",
+      "success": false
+    },
+    {
+      "task": "type_coercion",
+      "steps_taken": 10,
+      "total_reward": -1.5,
+      "grader_score": 0.0,
+      "verdict": "FAIL",
+      "success": false
+    }
+  ],
+  "average_grader_score": 0.553,
+  "model": "gemini-3-flash-preview"
+}

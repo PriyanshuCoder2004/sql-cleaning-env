@@ -1,0 +1,122 @@
+name: sql-cleaning-env
+version: "0.1.0"
+description: "OpenEnv environment where AI agents clean dirty SQL databases using reinforcement learning."
+author: your-hf-username
+license: MIT
+tags:
+  - openenv
+  - data-cleaning
+  - sql
+  - reinforcement-learning
+  - real-world
+
+environment:
+  entry: app:app
+  port: 7860
+  framework: fastapi
+
+entrypoints:
+  reset:
+    method: POST
+    path: /reset
+    description: Start new episode with fresh dirty table
+
+  step:
+    method: POST
+    path: /step
+    description: Execute SQL action and return observation + reward
+
+  state:
+    method: GET
+    path: /state
+    description: Get current episode metadata
+
+  tasks:
+    method: GET
+    path: /tasks
+    description: List all available tasks
+
+  grader:
+    method: GET
+    path: /grader
+    description: Get final score for current episode
+
+# ✅ REQUIRED (important for validation)
+action_space:
+  type: object
+  required:
+    - sql
+  properties:
+    sql:
+      type: string
+      description: SQL statement(s) to execute
+    reasoning:
+      type: string
+      description: Optional explanation
+      nullable: true
+
+# ✅ REQUIRED (rename from observation_schema → observation_space)
+observation_space:
+  type: object
+  properties:
+    table_preview:
+      type: array
+      items:
+        type: object
+    dirty_count:
+      type: integer
+    total_rows:
+      type: integer
+    last_sql_error:
+      type: string
+      nullable: true
+    done:
+      type: boolean
+    reward:
+      type: number
+    message:
+      type: string
+    step_count:
+      type: integer
+
+# ✅ TASKS
+tasks:
+  - id: null_filling
+    name: Null value filling
+    difficulty: easy
+    max_steps: 10
+    passing_threshold: 0.8
+
+  - id: deduplication
+    name: Row deduplication
+    difficulty: medium
+    max_steps: 10
+    passing_threshold: 0.85
+
+  - id: schema_normalization
+    name: Schema normalization
+    difficulty: hard
+    max_steps: 10
+    passing_threshold: 0.85
+
+  - id: type_coercion
+    name: Type coercion
+    difficulty: hard
+    max_steps: 10
+    passing_threshold: 0.9
+
+# ✅ REWARD DESCRIPTION
+reward:
+  range: [-1.0, 1.0]
+  shaped: true
+  description: >
+    Reward is based on progress in cleaning dirty rows,
+    efficiency of steps, penalties for invalid SQL or no progress,
+    and a completion bonus based on grader score.
+
+  components:
+    progress: "+0.6 * (rows_cleaned / total_rows)"
+    efficiency: "+0.05 * (steps_remaining / max_steps)"
+    no_progress_penalty: "-0.05 if no rows cleaned after step 1"
+    sql_error_penalty: "-0.15 for invalid SQL"
+    completion_bonus: "+0.30 when grader score >= 0.8"
